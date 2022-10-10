@@ -2,29 +2,39 @@ import React, {Component} from "react";
 import "./Tour.scss";
 export default class Tour extends Component
 {
+    state = {
+        showInfo:false
+    };
+    handleInfo = () =>{
+        this.setState({
+            showInfo:!this.state.showInfo
+    });
+    }
     render() {
+        const {id,city,img,name,info} = this.props.tour;
+        const { removeTour } = this.props;
         return (
             
             <article className="tour">
                 <div className="img-container">
-                    <img src="https://images.pexels.com/photos/169647/pexels-photo-169647.jpeg?auto=compress&cs=tinysrgb&w=600://images.pexels.com/photos/13792566/pexels-photo-13792566.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="">
+                    <img src={img} alt="">
                     </img>
-                    <span className="close-btn">
+                    <span className="close-btn" onClick={()=>{removeTour(id);}}>
                         <i className="fas fa-window-close"/>
                     </span>
                 </div>
                 <div className="tour-info">
-                    <h3> City </h3>
-                    <h4> name </h4>
+                    <h3> {city} </h3>
+                    <h4> {name} </h4>
                     <h5> 
                         Info{""}
-                        <span>
+                        <span onClick={this.handleInfo}>
                             <i className="fas fa-caret-square-down"/>    
                         </span>  
                     </h5>
-                    <p>
-                        lorem ipsum
-                    </p>
+
+                    {this.state.showInfo && <p> {info} </p>}
+                    
                 </div>
             </article>
         )
