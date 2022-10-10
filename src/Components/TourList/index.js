@@ -19,7 +19,7 @@ export default class TourList extends Component{
 
         return (
             <section className="tourlist">
-                {/* <Tour/> */}
+                
                 {tours.map(tour => {
                     return(
                         <Tour key={tour.id} tour={tour} removeTour={this.removeTour} />
